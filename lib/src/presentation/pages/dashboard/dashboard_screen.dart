@@ -1,6 +1,9 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
+import 'package:jellybean/src/presentation/pages/dashboard/side_menu/side_menu.dart';
+import 'package:jellybean/src/presentation/pages/screen_a/screen_a.dart';
+import 'package:jellybean/src/presentation/pages/screen_b/screen_b.dart';
+import 'package:jellybean/src/presentation/pages/screen_c/screen_c.dart';
+
 import 'package:provider/provider.dart';
 
 class DashboardModel with ChangeNotifier {
@@ -34,46 +37,32 @@ class DashboardScreen extends StatelessWidget {
       ),
       body: Row(
         children: [
-          Container(
-              color: Colors.amber,
-              width: 250,
-              child: ListView(
-                children: [
-                  ListTile(
-                    leading: const Icon(Icons.message),
-                    title: const Text('Messages'),
-                    onTap: () {
-                      dashboardModel.selectMenuItem('Messages');
-                    },
-                  ),
-                  ListTile(
-                    leading: const Icon(Icons.account_circle),
-                    title: const Text('Profile'),
-                    onTap: () {
-                      dashboardModel.selectMenuItem('Profile');
-                    },
-                  ),
-                  ListTile(
-                    leading: const Icon(Icons.settings),
-                    title: const Text('Settings'),
-                    onTap: () {
-                      dashboardModel.selectMenuItem('Settings');
-                    },
-                  ),
-                ],
-              )),
+          SideMenu(dashboardModel: dashboardModel),
           Expanded(
             child: Container(
               color: Colors.blueGrey,
               child: Center(
                 child: ChangeNotifierProvider(
                     create: (context) => DashboardModel(),
-                    child: Text(dashboardModel.selectedMenuItem)),
+                    child: displaySelectedMenuItemView(dashboardModel)),
               ),
             ),
-          )
+          ),
         ],
       ),
     );
+  }
+
+  Widget displaySelectedMenuItemView(DashboardModel dashboardModel) {
+    switch (dashboardModel.selectedMenuItem) {
+      case 'Screen A':
+        return const ScreenA();
+      case 'Screen B':
+        return const ScreenB();
+      case 'Screen C':
+        return const ScreenC();
+      default:
+        return const ScreenA();
+    }
   }
 }
