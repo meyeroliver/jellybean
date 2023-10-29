@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'src/presentation/pages/dashboard/dashboard_screen.dart';
 
 void main() {
-  runApp(const JellyBean());
+  runApp(
+    const ProviderScope(
+      child: JellyBean(),
+    ),
+  );
 }
 
 class JellyBean extends StatelessWidget {
@@ -18,10 +22,7 @@ class JellyBean extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: ChangeNotifierProvider(
-        create: (context) => DashboardModel(),
-        child: const DashboardScreen(),
-      ),
+      home: const DashboardScreen(),
     );
   }
 }

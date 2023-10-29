@@ -1,35 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:jellybean/src/presentation/pages/dashboard/dashboard_viewmodel.dart';
 import 'package:jellybean/src/presentation/pages/dashboard/side_menu/side_menu.dart';
 import 'package:jellybean/src/presentation/pages/screen_a/screen_a.dart';
 import 'package:jellybean/src/presentation/pages/screen_b/screen_b.dart';
 import 'package:jellybean/src/presentation/pages/screen_c/screen_c.dart';
 
-import 'package:provider/provider.dart';
-
-class DashboardModel with ChangeNotifier {
-  int _selectedItem = 0;
-  String _selectedMenuItem = '';
-
-  int get selectedItem => _selectedItem;
-  String get selectedMenuItem => _selectedMenuItem;
-
-  void selectItem(int index) {
-    _selectedItem = index;
-    notifyListeners();
-  }
-
-  void selectMenuItem(String menuItem) {
-    _selectedMenuItem = menuItem;
-    notifyListeners();
-  }
-}
-
-class DashboardScreen extends StatelessWidget {
+class DashboardScreen extends ConsumerWidget {
   const DashboardScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    final dashboardModel = Provider.of<DashboardModel>(context);
+  Widget build(BuildContext context, WidgetRef ref) {
+    DashboardViewModel dashboardVM = ref.watch(dashboardProvider);
 
     return Scaffold(
       appBar: AppBar(
@@ -37,14 +19,12 @@ class DashboardScreen extends StatelessWidget {
       ),
       body: Row(
         children: [
-          SideMenu(dashboardModel: dashboardModel),
+          SideMenu(dashboardModel: dashboardVM),
           Expanded(
             child: Container(
               color: Colors.blueGrey,
               child: Center(
-                child: ChangeNotifierProvider(
-                    create: (context) => DashboardModel(),
-                    child: displaySelectedMenuItemView(dashboardModel)),
+                child:  displaySelectedMenuItemView(dashboardVM),
               ),
             ),
           ),
@@ -53,8 +33,8 @@ class DashboardScreen extends StatelessWidget {
     );
   }
 
-  Widget displaySelectedMenuItemView(DashboardModel dashboardModel) {
-    switch (dashboardModel.selectedMenuItem) {
+  Widget displaySelectedMenuItemView(DashboardViewModel dashboardVM) {
+    switch (dashboardVM.selectedMenuItem) {
       case 'Screen A':
         return const ScreenA();
       case 'Screen B':

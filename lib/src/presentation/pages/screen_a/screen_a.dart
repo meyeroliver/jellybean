@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jellybean/src/presentation/pages/screen_a/widgets/property_form.dart';
 
 class ScreenA extends StatelessWidget {
   const ScreenA({super.key});
@@ -8,7 +9,7 @@ class ScreenA extends StatelessWidget {
     return Container(
       color: Colors.purple,
       child: const Center(
-        child: Text('Screen A'),
+        child: PropertyForm(),
       ),
     );
   }

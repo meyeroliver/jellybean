@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../dashboard_screen.dart';
+import 'package:jellybean/src/presentation/pages/dashboard/dashboard_viewmodel.dart';
 
 class SideMenu extends StatelessWidget {
   const SideMenu({
@@ -8,7 +7,7 @@ class SideMenu extends StatelessWidget {
     required this.dashboardModel,
   }) : super(key: key);
 
-  final DashboardModel dashboardModel;
+  final DashboardViewModel dashboardModel;
 
   @override
   Widget build(BuildContext context) {
