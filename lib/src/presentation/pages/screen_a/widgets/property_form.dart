@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jellybean/src/presentation/common/widgets/textfield.dart';
 
 class PropertyForm extends StatefulWidget {
   const PropertyForm({super.key});
@@ -20,32 +21,18 @@ class _PropertyFormState extends State<PropertyForm> {
       child: Padding(
         padding: const EdgeInsets.all(16.0),
         child: ListView(
-          // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            const TextField(),
-            TextFormField(
-              decoration: const InputDecoration(
-                border: OutlineInputBorder(),
-                hintText: 'Value',
-              ),
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return 'Please enter something';
-                }
-                return null;
-              },
+            const GTextField(
+              hintText: 'Name',
+              margin: EdgeInsets.symmetric(vertical: 4.0, horizontal: 0),
             ),
-            TextFormField(
-              decoration: const InputDecoration(
-                border: OutlineInputBorder(),
-                hintText: 'Price',
-              ),
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return 'Please enter something';
-                }
-                return null;
-              },
+            const GTextField(
+              hintText: 'Value',
+              margin: EdgeInsets.symmetric(vertical: 4, horizontal: 0),
+            ),
+            const GTextField(
+              hintText: 'Price',
+              margin: EdgeInsets.symmetric(vertical: 4, horizontal: 0),
             ),
             const Divider(
               height: 20,
@@ -54,17 +41,9 @@ class _PropertyFormState extends State<PropertyForm> {
               endIndent: 0,
               color: Colors.black,
             ),
-            TextFormField(
-              decoration: const InputDecoration(
-                border: OutlineInputBorder(),
-                hintText: 'Rental Income',
-              ),
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return 'Please enter something';
-                }
-                return null;
-              },
+            const GTextField(
+              hintText: 'Rental Income',
+              margin: EdgeInsets.symmetric(vertical: 4, horizontal: 0),
             ),
             const Divider(
               height: 20,
@@ -73,77 +52,29 @@ class _PropertyFormState extends State<PropertyForm> {
               endIndent: 0,
               color: Colors.black,
             ),
-            TextFormField(
-              decoration: const InputDecoration(
-                border: OutlineInputBorder(),
-                hintText: 'Bond',
-              ),
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return 'Please enter something';
-                }
-                return null;
-              },
+            const GTextField(
+              hintText: 'Bond',
+              margin: EdgeInsets.symmetric(vertical: 4, horizontal: 0),
             ),
-            TextFormField(
-              decoration: const InputDecoration(
-                border: OutlineInputBorder(),
-                hintText: 'Levies',
-              ),
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return 'Please enter something';
-                }
-                return null;
-              },
+            const GTextField(
+              hintText: 'Levies',
+              margin: EdgeInsets.symmetric(vertical: 4, horizontal: 0),
             ),
-            TextFormField(
-              decoration: const InputDecoration(
-                border: OutlineInputBorder(),
-                hintText: 'Rates & Taxes',
-              ),
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return 'Please enter something';
-                }
-                return null;
-              },
+            const GTextField(
+              hintText: 'Rates & Taxes',
+              margin: EdgeInsets.symmetric(vertical: 4, horizontal: 0),
             ),
-            TextFormField(
-              decoration: const InputDecoration(
-                border: OutlineInputBorder(),
-                hintText: 'Commission',
-              ),
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return 'Please enter something';
-                }
-                return null;
-              },
+            const GTextField(
+              hintText: 'Commission',
+              margin: EdgeInsets.symmetric(vertical: 4, horizontal: 0),
             ),
-            TextFormField(
-              decoration: const InputDecoration(
-                border: OutlineInputBorder(),
-                hintText: 'Repairs',
-              ),
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return 'Please enter something';
-                }
-                return null;
-              },
+            const GTextField(
+              hintText: 'Repairs',
+              margin: EdgeInsets.symmetric(vertical: 4, horizontal: 0),
             ),
-            TextFormField(
-              decoration: const InputDecoration(
-                border: OutlineInputBorder(),
-                hintText: 'Wifi',
-              ),
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return 'Please enter something';
-                }
-                return null;
-              },
+            const GTextField(
+              hintText: 'Wifi',
+              margin: EdgeInsets.symmetric(vertical: 4, horizontal: 0),
             ),
             const Divider(
               height: 20,
@@ -152,69 +83,33 @@ class _PropertyFormState extends State<PropertyForm> {
               endIndent: 0,
               color: Colors.black,
             ),
-            TextFormField(
-              decoration: const InputDecoration(
-                border: OutlineInputBorder(),
-                hintText: 'Deposit',
-              ),
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return 'Please enter something';
-                }
-                return null;
-              },
+            const GTextField(
+              hintText: 'Deposit',
+              margin: EdgeInsets.symmetric(vertical: 4, horizontal: 0),
             ),
-            TextFormField(
-              decoration: const InputDecoration(
-                border: OutlineInputBorder(),
-                hintText: 'Bond & Transfer',
-              ),
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return 'Please enter something';
-                }
-                return null;
-              },
+            const GTextField(
+              hintText: 'Bond & Transfer',
+              margin: EdgeInsets.symmetric(vertical: 4, horizontal: 0),
             ),
-            TextFormField(
-              decoration: const InputDecoration(
-                border: OutlineInputBorder(),
-                hintText: 'Initial Setup',
-              ),
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return 'Please enter something';
-                }
-                return null;
-              },
+            const GTextField(
+              hintText: 'Initial Setup',
+              margin: EdgeInsets.symmetric(vertical: 4, horizontal: 0),
             ),
+            ElevatedButton(
+              onPressed: () {
+                // Validate returns true if the form is valid, or false otherwise.
+                if (_properFromKey.currentState!.validate()) {
+                  // If the form is valid, display a snackbar. In the real world,
+                  // you'd often call a server or save the information in a database.
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text('Processing Data')),
+                  );
+                }
+              },
+              child: const Text('Submit'),
+            )
           ],
         ),
-      ),
-    );
-  }
-}
-
-class TextField extends StatelessWidget {
-  const TextField({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 0.0),
-      child: TextFormField(
-        decoration: const InputDecoration(
-          border: OutlineInputBorder(),
-          hintText: 'Name',
-        ),
-        validator: (value) {
-          if (value == null || value.isEmpty) {
-            return 'Please enter something';
-          }
-          return null;
-        },
       ),
     );
   }
