@@ -19,6 +19,7 @@ class GTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      //width: 300,
       key: key,
       margin: margin,
       child: FormBuilderTextField(
