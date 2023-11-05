@@ -25,6 +25,7 @@ class GTextField extends StatelessWidget {
       child: FormBuilderTextField(
         name: name,
         decoration: InputDecoration(
+        
           border: const OutlineInputBorder(),
           labelText: name,
           hintText: hintText ?? name,
