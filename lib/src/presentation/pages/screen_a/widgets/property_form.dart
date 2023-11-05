@@ -1,22 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:jellybean/src/presentation/common/widgets/textfield.dart';
+import 'package:jellybean/src/presentation/pages/screen_a/property_form_provider.dart';
 
-class PropertyForm extends StatefulWidget {
-  const PropertyForm({super.key});
-
-  @override
-  State<PropertyForm> createState() => _PropertyFormState();
-}
-
-class _PropertyFormState extends State<PropertyForm> {
-  /* 
-    Create a global key that uniquely identifies the Form widget
-    and allows validation of the form.
- */
+class PropertyForm extends ConsumerWidget {
   final _properFromKey = GlobalKey<FormBuilderState>();
+
+  PropertyForm({super.key});
+
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return FormBuilder(
       key: _properFromKey,
       child: Padding(
@@ -33,8 +27,13 @@ class _PropertyFormState extends State<PropertyForm> {
                 Expanded(
                   child: GTextField(
                     name: 'Name',
-                    margin:
-                        EdgeInsets.only(left: 0, top: 8, right: 4, bottom: 8),
+                    margin: EdgeInsets.only(
+                      left: 0,
+                      top: 8,
+                      right: 4,
+                      bottom: 8,
+                    ),
+                    validator: FormBuilderValidators.re,
                   ),
                 ),
                 Expanded(
@@ -158,17 +157,16 @@ class _PropertyFormState extends State<PropertyForm> {
                     margin:
                         const EdgeInsets.symmetric(horizontal: 0, vertical: 8),
                     child: ElevatedButton(
-                      
                       onPressed: () {
                         // Validate returns true if the form is valid, or false otherwise.
                         if (_properFromKey.currentState!.validate()) {
-                          // If the form is valid, display a snackbar. In the real world,
-                          // you'd often call a server or save the information in a database.
+                          ref
+                              .read(propertyFormDataProvider.notifier)
+                              .submitFormData(
+                                  _properFromKey.currentState!.instantValue);
                           ScaffoldMessenger.of(context).showSnackBar(
                             const SnackBar(content: Text('Processing Data')),
                           );
-                          debugPrint(_properFromKey.currentState?.instantValue
-                              .toString());
                         }
                       },
                       child: const Text('Submit'),

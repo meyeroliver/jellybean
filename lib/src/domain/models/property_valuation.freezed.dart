@@ -14,8 +14,12 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
+PropertyValuation _$PropertyValuationFromJson(Map<String, dynamic> json) {
+  return _PropertyValuation.fromJson(json);
+}
+
 /// @nodoc
-mixin _$ProportyValuation {
+mixin _$PropertyValuation {
   String get name => throw _privateConstructorUsedError;
   double get value => throw _privateConstructorUsedError;
   double get price => throw _privateConstructorUsedError;
@@ -25,16 +29,17 @@ mixin _$ProportyValuation {
   double get ratesTaxes => throw _privateConstructorUsedError;
   double get wifi => throw _privateConstructorUsedError;
 
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $ProportyValuationCopyWith<ProportyValuation> get copyWith =>
+  $PropertyValuationCopyWith<PropertyValuation> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ProportyValuationCopyWith<$Res> {
-  factory $ProportyValuationCopyWith(
-          ProportyValuation value, $Res Function(ProportyValuation) then) =
-      _$ProportyValuationCopyWithImpl<$Res, ProportyValuation>;
+abstract class $PropertyValuationCopyWith<$Res> {
+  factory $PropertyValuationCopyWith(
+          PropertyValuation value, $Res Function(PropertyValuation) then) =
+      _$PropertyValuationCopyWithImpl<$Res, PropertyValuation>;
   @useResult
   $Res call(
       {String name,
@@ -48,9 +53,9 @@ abstract class $ProportyValuationCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$ProportyValuationCopyWithImpl<$Res, $Val extends ProportyValuation>
-    implements $ProportyValuationCopyWith<$Res> {
-  _$ProportyValuationCopyWithImpl(this._value, this._then);
+class _$PropertyValuationCopyWithImpl<$Res, $Val extends PropertyValuation>
+    implements $PropertyValuationCopyWith<$Res> {
+  _$PropertyValuationCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -108,7 +113,7 @@ class _$ProportyValuationCopyWithImpl<$Res, $Val extends ProportyValuation>
 
 /// @nodoc
 abstract class _$$PropertyValuationImplCopyWith<$Res>
-    implements $ProportyValuationCopyWith<$Res> {
+    implements $PropertyValuationCopyWith<$Res> {
   factory _$$PropertyValuationImplCopyWith(_$PropertyValuationImpl value,
           $Res Function(_$PropertyValuationImpl) then) =
       __$$PropertyValuationImplCopyWithImpl<$Res>;
@@ -127,7 +132,7 @@ abstract class _$$PropertyValuationImplCopyWith<$Res>
 
 /// @nodoc
 class __$$PropertyValuationImplCopyWithImpl<$Res>
-    extends _$ProportyValuationCopyWithImpl<$Res, _$PropertyValuationImpl>
+    extends _$PropertyValuationCopyWithImpl<$Res, _$PropertyValuationImpl>
     implements _$$PropertyValuationImplCopyWith<$Res> {
   __$$PropertyValuationImplCopyWithImpl(_$PropertyValuationImpl _value,
       $Res Function(_$PropertyValuationImpl) _then)
@@ -183,7 +188,7 @@ class __$$PropertyValuationImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$PropertyValuationImpl
     with DiagnosticableTreeMixin
     implements _PropertyValuation {
@@ -196,6 +201,9 @@ class _$PropertyValuationImpl
       required this.levies,
       required this.ratesTaxes,
       required this.wifi});
+
+  factory _$PropertyValuationImpl.fromJson(Map<String, dynamic> json) =>
+      _$$PropertyValuationImplFromJson(json);
 
   @override
   final String name;
@@ -216,14 +224,14 @@ class _$PropertyValuationImpl
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'ProportyValuation(name: $name, value: $value, price: $price, rentalIncome: $rentalIncome, bond: $bond, levies: $levies, ratesTaxes: $ratesTaxes, wifi: $wifi)';
+    return 'PropertyValuation(name: $name, value: $value, price: $price, rentalIncome: $rentalIncome, bond: $bond, levies: $levies, ratesTaxes: $ratesTaxes, wifi: $wifi)';
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
-      ..add(DiagnosticsProperty('type', 'ProportyValuation'))
+      ..add(DiagnosticsProperty('type', 'PropertyValuation'))
       ..add(DiagnosticsProperty('name', name))
       ..add(DiagnosticsProperty('value', value))
       ..add(DiagnosticsProperty('price', price))
@@ -251,6 +259,7 @@ class _$PropertyValuationImpl
             (identical(other.wifi, wifi) || other.wifi == wifi));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, name, value, price, rentalIncome,
       bond, levies, ratesTaxes, wifi);
@@ -261,9 +270,16 @@ class _$PropertyValuationImpl
   _$$PropertyValuationImplCopyWith<_$PropertyValuationImpl> get copyWith =>
       __$$PropertyValuationImplCopyWithImpl<_$PropertyValuationImpl>(
           this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$PropertyValuationImplToJson(
+      this,
+    );
+  }
 }
 
-abstract class _PropertyValuation implements ProportyValuation {
+abstract class _PropertyValuation implements PropertyValuation {
   const factory _PropertyValuation(
       {required final String name,
       required final double value,
@@ -273,6 +289,9 @@ abstract class _PropertyValuation implements ProportyValuation {
       required final double levies,
       required final double ratesTaxes,
       required final double wifi}) = _$PropertyValuationImpl;
+
+  factory _PropertyValuation.fromJson(Map<String, dynamic> json) =
+      _$PropertyValuationImpl.fromJson;
 
   @override
   String get name;

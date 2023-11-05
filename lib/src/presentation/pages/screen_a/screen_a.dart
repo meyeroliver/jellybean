@@ -8,7 +8,7 @@ class ScreenA extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       color: Colors.purple,
-      child: const Center(
+      child: Center(
         child: PropertyForm(),
       ),
     );
